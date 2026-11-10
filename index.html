@@ -383,6 +383,7 @@ header .ibtn svg{width:24px!important;height:24px!important}
 .ck-tp li::before{content:counter(t);flex:none;width:22px;height:22px;border-radius:50%;background:var(--dnbg);color:var(--g);font-size:12px;font-weight:700;display:inline-grid;place-items:center}
 .tbl th:not(:first-child),.tbl td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
 .row>b:last-child{margin-left:auto;text-align:right;white-space:nowrap;padding-left:12px;font-variant-numeric:tabular-nums}
+.bl-mp2 .bl-mi2{max-width:420px;margin:4px auto 0}.bl-mp2 .bl-mi2 svg{width:100%;height:auto;display:block}.bl-mn{display:block;font-size:12px;color:var(--mu);margin-top:8px;text-align:center}
 </style>
 </head>
 <body>
@@ -833,7 +834,7 @@ hero=`<section class="dp-hero bl-hero"><div class="dp-tx"><h1>Pantau Harga Panga
 quick=`<div class="bl-qk"><h2 class="bl-only-d">Akses Cepat</h2><div class="bl-qg">${ft.map(f=>`<button onclick="go('${f[0]}')"><img src="${ICO[f[0]]}" alt="" width="34" height="34"><span>${f[1]}</span></button>`).join("")}</div></div>`,
 chart=`<div class="bl-pn bl-ch"><div class="bl-hd"><div><h2>Pergerakan Harga</h2><small>Rata-rata 10 komoditas ${avg>.05?"naik":avg<-.05?"turun":"stabil"} <b class="${avg>.05?"u":avg<-.05?"d":""}">${Math.abs(avg).toFixed(1).replace(".",",")}%</b> · ${last(0)[0]}</small></div></div>${sbChips()}${sbPanel(i)}</div>`,
 table=`<div class="bl-pn bl-tb"><div class="bl-hd"><div><h2>Harga Rata-rata</h2><small>Jawa Barat · SP2KP · ${last(0)[0]}</small></div><button class="bl-lk" onclick="go('harga')">Semua →</button></div>${[0,1,3,4,5].map(k=>`<button class="bl-r" onclick="detail(${k})">${C[k][3]}<span class="bl-n">${C[k][1]}${fav>=0&&vals(k)[fav]!=null?`<small>${D.rg[fav]}: ${fmt(vals(k)[fav])}</small>`:""}</span><b>${fmt(last(k)[1])}</b>${tri(chgv(k))}</button>`).join("")}</div>`,
-map=`<div class="bl-pn bl-mp"><div><h2>Peta Harga</h2><p>Sebaran harga per kabupaten/kota. Survei pasar, 8 Okt 2026. Abu-abu = belum ada data.</p><button class="btn bl-btn" onclick="pC=hm;go('peta')">Buka Peta →</button></div><div class="bl-mi">${mapSVG(hm,-1,"goMap")}</div></div>`,
+map=`<div class="bl-pn bl-mp2"><div class="bl-hd"><div><h2>Peta Harga</h2><small>Harga ${C[hm][1].toLowerCase()} per kab/kota</small></div><button class="bl-lk" onclick="pC=hm;go('peta')">Buka Peta →</button></div><div class="bl-mi2">${mapSVG(hm,-1,"goMap")}</div><small class="bl-mn">Survei pasar 8 Okt 2026 · abu-abu belum ada data</small></div>`,
 news=`<div class="bl-hd bl-nh"><div><h2>Berita Terbaru</h2><small>Harga, stok, dan inflasi pangan</small></div><button class="bl-lk" onclick="go('informasi')">Semua →</button></div><div class="bl-nw">${N.map(n=>`<a href="${n.u}" target="_blank" rel="noopener noreferrer">${n.img?`<span class="bl-th"><img src="${n.img}" alt="" loading="lazy" referrerpolicy="no-referrer"></span>`:""}<span class="bl-nt"><span class="bl-tag t-${(n.t||"").toLowerCase()}">${n.t}</span><b>${n.h}</b><small>${n.src} · ${n.d}</small></span></a>`).join("")}</div>`;
 return`<div class="bl"><div class="bl-main">${hero}<div class="bl-only-m">${quick}</div><div class="bl-row">${chart}${table}</div><div class="bl-only-m">${map}</div>${news}</div><aside class="bl-side bl-only-d">${quick}${map}</aside></div>${favCard()}`};
 
